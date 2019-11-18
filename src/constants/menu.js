@@ -1,13 +1,21 @@
 const data = [
   {
     id: "main_dashboard",
-    icon: "iconsminds-air-balloon-1",
-    label: "menu.gogo",
-    to: "/app/gogo",
+    icon: "simple-icon-credit-card",
+    label: "menu.main_dashboard",
+    to: "/app/gogo"
+  },
+  {
+    id: "main_dashboard1",
+
+    icon: "iconsminds-management",
+    label: "menu.main_dashboard",
+    to: "/app/gogo"
   },
   {
     id: "secondmenu",
-    icon: "iconsminds-three-arrow-fork",
+    icon: "simple-icon-notebook",
+    icon: "iconsminds-library",
     label: "menu.second-menu",
     to: "/app/second-menu"
     // subs: [
@@ -20,13 +28,21 @@ const data = [
   },
   {
     id: "blankpage",
-    icon: "iconsminds-bucket",
+    // icon: "simple-icon-credit-card",
+    icon: "iconsminds-money-bag",
+
+    label: "menu.blank-page",
+    to: "/app/blank-page"
+  },
+  {
+    id: "project",
+    icon: "iconsminds-management",
     label: "menu.blank-page",
     to: "/app/blank-page"
   },
   {
     id: "docs",
-    icon: "iconsminds-library",
+    icon: "simple-icon-question",
     label: "menu.docs",
     to: "https://gogo-react-docs.coloredstrategies.com/",
     newWindow: true
