@@ -41,6 +41,8 @@ module.exports = {
   "menu.search": "Búsqueda",
   "menu.docs": "Docs",
   "menu.blank-page": "Blank Page",
+  "menu.main_dashboard": "My Ninjaz",
+
   /* 04.Error  */
   "pages.error-title": "Vaya, parece que ha ocurrido un error!",
   "pages.error-code": "Código de error",

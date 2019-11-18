@@ -1,29 +1,22 @@
 const data = [
   {
-    id: "gogo",
+    id: "main_dashboard",
     icon: "iconsminds-air-balloon-1",
     label: "menu.gogo",
     to: "/app/gogo",
-    subs: [
-      {
-        icon: "simple-icon-paper-plane",
-        label: "menu.start",
-        to: "/app/gogo/start"
-      }     
-    ]
   },
   {
     id: "secondmenu",
     icon: "iconsminds-three-arrow-fork",
     label: "menu.second-menu",
-    to: "/app/second-menu",
-    subs: [
-      {
-        icon: "simple-icon-paper-plane",
-        label: "menu.second",
-        to: "/app/second-menu/second"
-      }
-    ]
+    to: "/app/second-menu"
+    // subs: [
+    //   {
+    //     icon: "simple-icon-paper-plane",
+    //     label: "menu.second",
+    //     to: "/app/second-menu/second"
+    //   }
+    // ]
   },
   {
     id: "blankpage",
@@ -36,7 +29,7 @@ const data = [
     icon: "iconsminds-library",
     label: "menu.docs",
     to: "https://gogo-react-docs.coloredstrategies.com/",
-    newWindow:true
+    newWindow: true
   }
 ];
 export default data;
