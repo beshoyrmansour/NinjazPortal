@@ -1,22 +1,22 @@
 const data = [
   {
-    id: "main_dashboard",
-    icon: "simple-icon-credit-card",
+    id: "menu_dashboard",
+    icon: "simple-icon-star",
     label: "menu.main_dashboard",
     to: "/app/gogo"
   },
   {
-    id: "main_dashboard1",
-
-    icon: "iconsminds-management",
-    label: "menu.main_dashboard",
+    id: "menu_services",
+    icon: "simple-icon-briefcase",
+    label: "menu.services",
     to: "/app/gogo"
   },
   {
-    id: "secondmenu",
-    icon: "simple-icon-notebook",
-    icon: "iconsminds-library",
-    label: "menu.second-menu",
+    id: "menu_my_order",
+    // icon: "simple-icon-notebook",
+    // icon: "iconsminds-library",
+    icon: "simple-icon-basket",
+    label: "menu.my_order",
     to: "/app/second-menu"
     // subs: [
     //   {
@@ -27,25 +27,24 @@ const data = [
     // ]
   },
   {
-    id: "blankpage",
+    id: "menu_my_finance",
+    icon: "iconsminds-coins",
+    label: "menu.my_finance",
+    to: "/app/blank-page"
+  },
+  {
+    id: "menu_my_account",
     // icon: "simple-icon-credit-card",
-    icon: "iconsminds-money-bag",
-
-    label: "menu.blank-page",
+    // icon: "iconsminds-money-bag",
+    icon: "simple-icon-wallet",
+    label: "menu.my_account",
     to: "/app/blank-page"
   },
   {
-    id: "project",
-    icon: "iconsminds-management",
-    label: "menu.blank-page",
-    to: "/app/blank-page"
-  },
-  {
-    id: "docs",
+    id: "menu_help_center",
     icon: "simple-icon-question",
-    label: "menu.docs",
-    to: "https://gogo-react-docs.coloredstrategies.com/",
-    newWindow: true
+    label: "menu.help_center",
+    to: "/app/blank-page"
   }
 ];
 export default data;
