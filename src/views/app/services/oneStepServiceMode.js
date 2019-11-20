@@ -2,9 +2,9 @@ import React, { Component, Fragment } from "react";
 import { Row, Card, CardBody, CardTitle, Button } from "reactstrap";
 import IntlMessages from "../../../helpers/IntlMessages";
 import { Colxx, Separator } from "../../../components/common/CustomBootstrap";
+import Dropzone from "../../../components/common/Dropzone";
 import Breadcrumb from "../../../containers/navs/Breadcrumb";
-// import DropzoneExample from "../../../../containers/forms/DropzoneExample";
-
+ 
 export default class MultiStepServiceMode extends Component {
   render() {
     console.log("MultiStepServiceMode Comp");
@@ -21,18 +21,18 @@ export default class MultiStepServiceMode extends Component {
             <p>
               <IntlMessages id="menu.services.one_step_service_mode" />
             </p>
-            {/* <Row className="mb-4">
+            <Row className="mb-4">
               <Colxx xxs="12">
                 <Card>
                   <CardBody>
                     <CardTitle>
                       <IntlMessages id="form-components.dropzone" />
                     </CardTitle>
-                    <DropzoneExample ref={node => (this.dropzone = node)} />
+                    <Dropzone ref={node => (this.dropzone = node)} />
                   </CardBody>
                 </Card>
               </Colxx>
-               </Row>*/}
+            </Row>
           </Colxx>
         </Row>
       </Fragment>

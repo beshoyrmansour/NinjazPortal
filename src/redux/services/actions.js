@@ -1,15 +1,9 @@
-import {
-    CHANGE_LOCALE
-} from '../actions';
+import { SET_SELECTED_SERVICE } from "../actions";
 
-
-export const changeLocale = (locale) => {
-    localStorage.setItem('currentLanguage', locale);
-    return (
-        {
-            type: CHANGE_LOCALE,
-            payload: locale
-        }
-    )
-}
-
+export const setSelectedService = selectedService => {
+  console.log("setSelectedService", selectedService);
+  return {
+    type: SET_SELECTED_SERVICE,
+    payload: selectedService
+  };
+};

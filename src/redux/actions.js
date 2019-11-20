@@ -8,9 +8,11 @@ export const MENU_CONTAINER_ADD_CLASSNAME = "MENU_CONTAINER_ADD_CLASSNAME";
 export const MENU_CLICK_MOBILE_MENU = "MENU_CLICK_MOBILE_MENU";
 export const MENU_CHANGE_DEFAULT_CLASSES = "MENU_CHANGE_DEFAULT_CLASSES";
 export const MENU_CHANGE_HAS_SUB_ITEM_STATUS =
-  "MENU_CHANGE_HAS_SUB_ITEM_STATUS";
+"MENU_CHANGE_HAS_SUB_ITEM_STATUS";
 
+export const SET_SELECTED_SERVICE = "SET_SELECTED_SERVICE";
 
 
 export * from "./menu/actions";
 export * from "./settings/actions";
+export * from "./services/actions";
