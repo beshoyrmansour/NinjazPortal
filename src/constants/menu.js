@@ -2,14 +2,31 @@ const data = [
   {
     id: "menu_dashboard",
     icon: "simple-icon-star",
-    label: "menu.main_dashboard",
-    to: "/app/gogo"
+    label: "menu.dashboard",
+    to: "/app/dashboard"
   },
   {
     id: "menu_services",
     icon: "simple-icon-briefcase",
     label: "menu.services",
-    to: "/app/gogo"
+    to: "/app/services",
+    subs: [
+      {
+        icon: "simple-icon-list",
+        label: "menu.services.all_services",
+        to: "/app/services"
+      },
+      {
+        icon: "simple-icon-list",
+        label: "menu.services.one_step_service_mode",
+        to: "/app/services/easy"
+      },
+      {
+        icon: "simple-icon-list",
+        label: "menu.services.multi_step_service_mode",
+        to: "/app/services/advanced"
+      }
+    ]
   },
   {
     id: "menu_my_order",
@@ -17,20 +34,13 @@ const data = [
     // icon: "iconsminds-library",
     icon: "simple-icon-basket",
     label: "menu.my_order",
-    to: "/app/second-menu"
-    // subs: [
-    //   {
-    //     icon: "simple-icon-paper-plane",
-    //     label: "menu.second",
-    //     to: "/app/second-menu/second"
-    //   }
-    // ]
+    to: "/app/blank-page"
   },
   {
     id: "menu_my_finance",
     icon: "iconsminds-coins",
     label: "menu.my_finance",
-    to: "/app/blank-page"
+    to: "/"
   },
   {
     id: "menu_my_account",
@@ -38,13 +48,13 @@ const data = [
     // icon: "iconsminds-money-bag",
     icon: "simple-icon-wallet",
     label: "menu.my_account",
-    to: "/app/blank-page"
+    to: "/"
   },
   {
     id: "menu_help_center",
     icon: "simple-icon-question",
     label: "menu.help_center",
-    to: "/app/blank-page"
+    to: "/"
   }
 ];
 export default data;

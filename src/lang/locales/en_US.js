@@ -41,13 +41,24 @@ module.exports = {
   "menu.search": "Search",
   "menu.docs": "Docs",
   "menu.blank-page": "Blank Page",
-  "menu.main_dashboard": "My Ninjaz",
+  "menu.dashboard": "My Ninjaz",
   "menu.services": "Services",
   "menu.my_order": "Orders",
   "menu.my_finance": "Finance",
   "menu.my_account": "Account",
   "menu.help_center": "Help center",
-
+  "menu.all": "All services",
+  "menu.advanced": "Advanced mode",
+  "menu.easy": "Easy Mode",
+  "menu.services.all_services": "All services",
+  "menu.services.one_step_service_mode": "Easy Mode services",
+  "menu.services.multi_step_service_mode": "Advanced Mode services",
+  
+  "dashboards.orders": "My Orders",
+  "dashboards.need_help": "Need help",
+  "dashboards.place_order_now": "Place order now",
+  
+  
   /* 04.Error Page */
   "pages.error-title": "Ooops... looks like an error occurred!",
   "pages.error-code": "Error code",

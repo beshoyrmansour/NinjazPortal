@@ -56,3 +56,14 @@ export const setDirection = localValue => {
   localStorage.setItem("direction", direction);
 };
 
+
+export const getOrderIcon = orderType => {
+  switch (orderType) {
+    case "translation":
+      return "simple-icon-star";
+      break;
+
+    default:
+      return "simple-icon-tag";
+  }
+};
