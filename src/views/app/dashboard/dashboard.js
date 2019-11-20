@@ -47,10 +47,10 @@ const dashboard = props => {
                 </CardTitle>
                 <Row>
                   <Colxx xxs="12" md="6" className="mb-4">
-                    <NavLink to="services/easy"><Button color="outline-primary" block size="lg"><span className="h1">Easy mode</span></Button></NavLink>
+                    <NavLink to="services/easy"><Button color="outline-primary" block size="lg"><span className="h3">Easy mode</span></Button></NavLink>
                   </Colxx>
                   <Colxx xxs="12" md="6" className="mb-4">
-                    <NavLink to="services/advanced"><Button color="outline-info" block size="lg"><span className="h1">Advanced mode</span></Button></NavLink>
+                    <NavLink to="services/advanced"><Button color="outline-info" block size="lg"><span className="h3">Advanced mode</span></Button></NavLink>
                   </Colxx>
                 </Row>
               </CardBody>
