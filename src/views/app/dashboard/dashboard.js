@@ -14,8 +14,8 @@ const odersData = [
     type: "translation",
     status: {
       value: "Under Prossesing",
-      time: "09.08.2018 - 12:45"
-    }
+      time: "09.08.2018 - 12:45",
+    },
   },
   {
     thumb: "/assets/img/profile-pic-l.jpg",
@@ -24,9 +24,9 @@ const odersData = [
     type: "legel",
     status: {
       value: "Under Prossesing",
-      time: "09.08.2018 - 12:45"
-    }
-  }
+      time: "09.08.2018 - 12:45",
+    },
+  },
 ];
 const dashboard = props => {
   return (
@@ -40,20 +40,41 @@ const dashboard = props => {
         </Row>
         <Row>
           <Colxx xxs="12" md="12" className="mb-4">
-            <Card>
+            <Card className="rounded shadow">
               <CardBody>
                 <CardTitle>
                   <IntlMessages id="dashboards.place_order_now" />
                 </CardTitle>
                 <Row>
                   <Colxx xxs="12" md="4" className="mb-4">
-                    <NavLink to="services/all"><Button color="primary" block size="lg"><span className="h3">All Services</span></Button></NavLink>
+                    <NavLink to="services/all">
+                      <Button color="primary" block size="lg">
+                        <span className="h3">
+                          {" "}
+                          <i className="simple-icon-briefcase"></i> All Services
+                        </span>
+                      </Button>
+                    </NavLink>
                   </Colxx>
                   <Colxx xxs="12" md="4" className="mb-4">
-                    <NavLink to="services/easy"><Button color="outline-primary" block size="lg"><span className="h3">Easy mode</span></Button></NavLink>
+                    <NavLink to="services/easy">
+                      <Button color="outline-primary" block size="lg">
+                        <span className="h3">
+                          {" "}
+                          <i className="simple-icon-emotsmile"></i> Easy mode
+                        </span>
+                      </Button>
+                    </NavLink>
                   </Colxx>
                   <Colxx xxs="12" md="4" className="mb-4">
-                    <NavLink to="services/advanced"><Button color="outline-dark" block size="lg"><span className="h3">Advanced mode</span></Button></NavLink>
+                    <NavLink to="services/advanced">
+                      <Button color="outline-dark" block size="lg">
+                        <span className="h3">
+                          {" "}
+                          <i className="simple-icon-clock"></i> Advanced mode
+                        </span>
+                      </Button>
+                    </NavLink>
                   </Colxx>
                 </Row>
               </CardBody>
@@ -74,15 +95,15 @@ const dashboard = props => {
                   autoplay={false}
                   controls={true}
                   controlBar={{
-                    pictureInPictureToggle: false
+                    pictureInPictureToggle: false,
                   }}
                   className="video-js side-bar-video card-img-top mb-4"
                   poster="/assets/img/subpage-video-poster.jpg"
                   sources={[
                     {
                       src: "http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_30fps_normal.mp4",
-                      type: "video/mp4"
-                    }
+                      type: "video/mp4",
+                    },
                   ]}
                 />
                 <p className="lead">

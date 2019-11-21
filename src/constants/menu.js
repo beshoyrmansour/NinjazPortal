@@ -17,12 +17,12 @@ const data = [
         to: "/app/services"
       },
       {
-        icon: "simple-icon-list",
+        icon: "simple-icon-emotsmile",
         label: "menu.services.one_step_service_mode",
         to: "/app/services/easy"
       },
       {
-        icon: "simple-icon-list",
+        icon: "simple-icon-clock",
         label: "menu.services.multi_step_service_mode",
         to: "/app/services/advanced"
       }

@@ -1,9 +1,9 @@
-import { SET_SELECTED_SERVICE } from "../actions";
+import { SERVICES } from "../actions";
 
 export const setSelectedService = selectedService => {
   console.log("setSelectedService", selectedService);
   return {
-    type: SET_SELECTED_SERVICE,
+    type: SERVICES.SET_SELECTED_SERVICE,
     payload: selectedService
   };
 };
