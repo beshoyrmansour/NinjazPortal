@@ -58,6 +58,17 @@ module.exports = {
   "dashboards.need_help": "Need help",
   "dashboards.place_order_now": "Place order now",
   
+
+  "form.files":"Upload Your Files",
+  "form.targetLanguage":"Target Language",
+  "form.stamp":"Stamp",
+  "form.stampDesc":"Is stamp required ?",
+  "form.deliveryTime":"Delivery Time",
+  "form.budget":"Budget",
+  "form.additionalService":"Additional Service",
+  "form.confidentialityAgreement":"Confidentiality Agreement",
+  "form.specialInstructions":"Special Instructions",
+  "form.requiredSample":"Required Sample",
   
   /* 04.Error Page */
   "pages.error-title": "Ooops... looks like an error occurred!",

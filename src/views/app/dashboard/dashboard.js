@@ -46,10 +46,13 @@ const dashboard = props => {
                   <IntlMessages id="dashboards.place_order_now" />
                 </CardTitle>
                 <Row>
-                  <Colxx xxs="12" md="6" className="mb-4">
+                  <Colxx xxs="12" md="4" className="mb-4">
+                    <NavLink to="services/all"><Button color="primary" block size="lg"><span className="h3">All Services</span></Button></NavLink>
+                  </Colxx>
+                  <Colxx xxs="12" md="4" className="mb-4">
                     <NavLink to="services/easy"><Button color="outline-primary" block size="lg"><span className="h3">Easy mode</span></Button></NavLink>
                   </Colxx>
-                  <Colxx xxs="12" md="6" className="mb-4">
+                  <Colxx xxs="12" md="4" className="mb-4">
                     <NavLink to="services/advanced"><Button color="outline-dark" block size="lg"><span className="h3">Advanced mode</span></Button></NavLink>
                   </Colxx>
                 </Row>

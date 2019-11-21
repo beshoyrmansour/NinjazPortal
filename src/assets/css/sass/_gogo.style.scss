@@ -4687,7 +4687,7 @@ select.form-control:not([size]):not([multiple]) {
 }
 
 .custom-switch {
-  display: block !important;
+  // display: block !important;
   background: $separator-color !important;
   width: 58px !important;
   height: 27px !important;
@@ -8648,3 +8648,12 @@ i.large-icon {
     }
   }
 }
+
+    .thank-you-logo {
+    width: 50vw;
+    height: 50vh;
+      background: url($logoPath) no-repeat;
+      background-position: center center;
+    // margin: auto;
+    }
+    
