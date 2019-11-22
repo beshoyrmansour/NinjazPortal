@@ -18,7 +18,7 @@ const OrderList = props => {
             {props.odersData.map((order, index) => {
               return (
                 <div key={index} className=" mb-3 pb-3 border-bottom">
-                  <NavLink to={"/app/orders/" + order.id} className="d-flex flex-row align-items-baseline">
+                  <NavLink to={"/app/orders/details/" + order.id} className="d-flex flex-row align-items-baseline">
                     <p src={order.thumb} alt={order.id} className="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall">
                       <i className={getOrderIcon(order.type)}></i>
                     </p>

@@ -8,7 +8,6 @@ import Breadcrumb from "../../../containers/navs/Breadcrumb";
 import OrderList from "../../../containers/dashboard/orderList";
 const odersData = [
   {
-    thumb: "/assets/img/profile-pic-l.jpg",
     id: "634784689245",
     detail: "Hello detail",
     type: "translation",
@@ -18,7 +17,6 @@ const odersData = [
     },
   },
   {
-    thumb: "/assets/img/profile-pic-l.jpg",
     id: "634784689245",
     detail: "Hello detail",
     type: "legel",
@@ -50,7 +48,6 @@ const dashboard = props => {
                     <NavLink to="services/all">
                       <Button color="primary" block size="lg">
                         <span className="h3">
-                          {" "}
                           <i className="simple-icon-briefcase"></i> All Services
                         </span>
                       </Button>

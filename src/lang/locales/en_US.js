@@ -44,6 +44,8 @@ module.exports = {
   "menu.dashboard": "My Ninjaz",
   "menu.services": "Services",
   "menu.orders": "Orders",
+  "menu.orders.order_details": "Order details",
+  "menu.details": "Details",
   "menu.finance": "Finance",
   "menu.account": "Account",
   "menu.help_center": "Help center",
@@ -53,27 +55,26 @@ module.exports = {
   "menu.services.all_services": "All services",
   "menu.services.one_step_service_mode": "Easy Mode services",
   "menu.services.multi_step_service_mode": "Advanced Mode services",
-  
+
   "menu.orders.all_orders": "All orders",
 
   "dashboards.orders": "My Orders",
   "dashboards.need_help": "Need help",
   "dashboards.place_order_now": "Place order now",
-  
 
-  "form.files":"Upload Your Files",
-  "form.targetLanguage":"Target Language",
-  "form.stamp":"Stamp",
-  "form.stampDesc":"Is stamp required ?",
-  "form.deliveryTime":"Delivery Time",
-  "form.budget":"Budget",
-  "form.additionalService":"Additional Service",
-  "form.confidentialityAgreement":"Confidentiality Agreement",
-  "form.specialInstructions":"Special Instructions",
-  "form.requiredSample":"Required Sample",
-  
+  "form.files": "Upload Your Files",
+  "form.targetLanguage": "Target Language",
+  "form.stamp": "Stamp",
+  "form.stampDesc": "Is stamp required ?",
+  "form.deliveryTime": "Delivery Time",
+  "form.budget": "Budget",
+  "form.additionalService": "Additional Service",
+  "form.confidentialityAgreement": "Confidentiality Agreement",
+  "form.specialInstructions": "Special Instructions",
+  "form.requiredSample": "Required Sample",
+
   /* 04.Error Page */
   "pages.error-title": "Ooops... looks like an error occurred!",
   "pages.error-code": "Error code",
-  "pages.go-back-home": "GO BACK HOME"
+  "pages.go-back-home": "GO BACK HOME",
 };

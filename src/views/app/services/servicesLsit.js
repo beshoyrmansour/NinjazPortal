@@ -47,16 +47,16 @@ const ServicesLsit = props => {
                             <CardTitle>
                               <h3 className="text-dark">{service.title}</h3>
                             </CardTitle>
-                            <div className={`justify-content-stretch d-flex flex-row align-items-center`}>
-                              <Button color="primary" className={`${service.hasAdvancedOption?"":"btn-block"}`} onClick={() => RedirectToServvices(service, "easy")}>
-                                <i className="simple-icon-emotsmile"></i> Easy Mode
+                            {/* <div className={`justify-content-stretch d-flex flex-colmun align-items-center`}> */}
+                            <Button color="primary" block onClick={() => RedirectToServvices(service, "easy")}>
+                              <i className="simple-icon-emotsmile"></i> Easy Mode
+                            </Button>
+                            {service.hasAdvancedOption && (
+                              <Button color="outline-dark" block onClick={() => RedirectToServvices(service, "advanced")}>
+                                <i className="simple-icon-clock"></i> advanced Mode
                               </Button>
-                              {service.hasAdvancedOption && (
-                                <Button color="outline-dark" className=" ml-2" onClick={() => RedirectToServvices(service, "advanced")}>
-                                  <i className="simple-icon-clock"></i> advanced Mode
-                                </Button>
-                              )}
-                            </div>
+                            )}
+                            {/* </div> */}
                           </CardBody>
                         </Card>
                       </Colxx>
