@@ -6,14 +6,28 @@ import { setSelectedService } from "../../../redux/services/actions";
 import IntlMessages from "../../../helpers/IntlMessages";
 import { Colxx, Separator } from "../../../components/common/CustomBootstrap";
 import Breadcrumb from "../../../containers/navs/Breadcrumb";
-
-import { Row, Card, CardBody, Form, FormGroup, Input, Label, ButtonGroup, Button, ButtonToolbar } from "reactstrap";
+import {
+  Row,
+  Card,
+  CardBody,
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  ButtonGroup,
+  Button,
+  ButtonToolbar,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
 import { Wizard, Steps, Step } from "react-albus";
 import { injectIntl } from "react-intl";
 import { BottomNavigation } from "./BottomNavigation";
 import { TopNavigation } from "./TopNavigation";
 import { NavLink } from "react-router-dom";
-
+import Dropzone from "../../../components/common/Dropzone";
 
 import Switch from "rc-switch";
 import "rc-switch/assets/index.css";
@@ -38,6 +52,9 @@ class MultiStepServiceMode extends Component {
     this.state = {
       bottomNavHidden: false,
       topNavDisabled: false,
+
+      isBudgetCurrencyOpen: false,
+
       _localServicesCategoryList: [],
       _localServicesList: [],
 
@@ -50,8 +67,13 @@ class MultiStepServiceMode extends Component {
       confidentialityAgreement: "",
       specialInstructions: "",
       requiredSample: false,
+
       otherLanguage: "",
       isOtherLanguage: true,
+
+      isDeliveryTime: true,
+      otherDeliveryTime: "",
+      budgetCurrency: {},
     };
   }
 
@@ -94,6 +116,7 @@ class MultiStepServiceMode extends Component {
   }
   componentDidMount() {
     this.fill_localServicesList();
+    this.setState({ budgetCurrency: this.props.currenciesList[0] });
   }
 
   render() {
@@ -135,19 +158,11 @@ class MultiStepServiceMode extends Component {
                       <Step id="filesStep" name={messages["form.files"]}>
                         <div className="wizard-basic-step">
                           <Form>
-                            <FormGroup className="d-flex justify-content-center align-items-center">
+                            <FormGroup className="d-block justify-content-center align-items-center">
                               <Label className="mr-2 mb-0">
                                 <IntlMessages id="form.files" />
                               </Label>
-                              <Input
-                                type="text"
-                                name="files"
-                                placeholder={messages["form.files"]}
-                                value={this.state.name}
-                                onChange={e => {
-                                  this.setState({ files: e.target.value });
-                                }}
-                              />
+                              <Dropzone ref={node => (this.dropzone = node)} />
                             </FormGroup>
                           </Form>
                         </div>
@@ -226,47 +241,47 @@ class MultiStepServiceMode extends Component {
                       <Step id="deliveryTimeStep" name={messages["form.deliveryTime"]}>
                         <div className="wizard-basic-step">
                           <Form>
-                            <FormGroup className="d-flex justify-content-center align-items-center">
-                              <Label className="mr-2 mb-0">
-                                <IntlMessages id="form.deliveryTime" />
-                              </Label>
-                              {/* <Input type="text" name="deliveryTime" placeholder={messages["form.deliveryTime"]} value={this.state.deliveryTime} onChange={(e) => { this.setState({ deliveryTime: e.target.value }) }} /> */}
+                            <FormGroup className="d-flex flex-column  justify-content-center align-items-center">
+                              <div className="d-flex flex-row justify-content-center align-items-center mb-4">
+                                <Label className="mr-2 mb-0">
+                                  <IntlMessages id="form.deliveryTime" />
+                                </Label>
+                                {/* <Input type="text" name="deliveryTime" placeholder={messages["form.deliveryTime"]} value={this.state.deliveryTime} onChange={(e) => { this.setState({ deliveryTime: e.target.value }) }} /> */}
 
-                              <ButtonGroup>
-                                {this.props.popularLanguages.map(language => (
+                                <ButtonGroup>
+                                  {this.props.popularDeliveryTimes.map(time => (
+                                    <ButtonToolbar>
+                                      <Button
+                                        className="mr-2"
+                                        color="primary"
+                                        onClick={() => this.setState({ deliveryTime: time.id, isDeliveryTime: false })}
+                                        active={this.state.deliveryTime === time.id}
+                                      >
+                                        {time.text}
+                                      </Button>
+                                    </ButtonToolbar>
+                                  ))}
                                   <ButtonToolbar>
                                     <Button
                                       className="mr-2"
                                       color="primary"
-                                      onClick={() =>
-                                        this.setState({ targetLanguage: language.languageName, otherLanguage: "", isOtherLanguage: false })
-                                      }
-                                      active={this.state.targetLanguage === language.languageName}
+                                      onClick={() => this.setState({ deliveryTime: "", isDeliveryTime: true })}
+                                      active={this.state.isDeliveryTime}
                                     >
-                                      {language.languageName}
+                                      <IntlMessages id="other" />
                                     </Button>
                                   </ButtonToolbar>
-                                ))}
-                                <ButtonToolbar>
-                                  <Button
-                                    className="mr-2"
-                                    color="primary"
-                                    onClick={() => this.setState({ targetLanguage: this.state.otherLanguage, isOtherLanguage: true })}
-                                    active={this.state.targetLanguage === this.state.otherLanguage}
-                                  >
-                                    <IntlMessages id="other" />
-                                  </Button>
-                                </ButtonToolbar>
-                              </ButtonGroup>
-                              {this.state.isOtherLanguage && (
+                                </ButtonGroup>
+                              </div>
+                              {this.state.isDeliveryTime && (
                                 <Input
-                                  type="targetLanguage"
-                                  name="targetLanguage"
-                                  placeholder={messages["form.targetLanguage"]}
-                                  className="w-50"
-                                  value={this.state.targetLanguage}
+                                  type="deliveryTime"
+                                  name="deliveryTime"
+                                  placeholder={messages["form.deliveryTime"]}
+                                  className="d-block w-50"
+                                  value={this.state.deliveryTime}
                                   onChange={e => {
-                                    this.setState({ targetLanguage: e.target.value, otherLanguage: e.target.value });
+                                    this.setState({ deliveryTime: e.target.value, otherDeliveryTime: e.target.value });
                                   }}
                                 />
                               )}
@@ -284,11 +299,24 @@ class MultiStepServiceMode extends Component {
                               <Input
                                 type="text"
                                 name="budget"
+                                className="w-50"
                                 placeholder={messages["form.budget"]}
                                 value={this.state.budget}
                                 onChange={e => {
                                   this.setState({ budget: e.target.value });
                                 }}
+                              />
+                              <Select
+                                components={{ Input: CustomSelectInput }}
+                                className="react-select "
+                                classNamePrefix="react-select"
+                                name="form-field-name"
+                                autoFocus
+                                value={this.state.budgetCurrency}
+                                //   getOptionLabel={option => option.title}
+                                onChange={e => this.setState({ budgetCurrency: e })}
+                                options={this.props.currenciesList}
+                                //   getOptionValue={option => option}
                               />
                             </FormGroup>
                           </Form>
@@ -418,8 +446,10 @@ class MultiStepServiceMode extends Component {
 }
 
 const mapStateToProps = ({ services }) => ({
-  popularLanguages: services.popularLanguages,
-  servicesCategoryList: services.servicesCategoryList,
+  currenciesList: services.currenciesList,
   selectedService: services.selectedService,
+  popularLanguages: services.popularLanguages,
+  popularDeliveryTimes: services.popularDeliveryTimes,
+  servicesCategoryList: services.servicesCategoryList,
 });
 export default injectIntl(connect(mapStateToProps, { setSelectedService })(MultiStepServiceMode));

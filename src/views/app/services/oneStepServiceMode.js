@@ -35,7 +35,8 @@ class OneStepServiceMode extends Component {
     let newServicesList = [];
     if (this.props.servicesCategoryList.length > 0) {
       this.props.servicesCategoryList.forEach(cat => {
-        newServicesList.push([...cat.services.filter(service => service.hasAdvancedOption)]);
+        // newServicesList.push([...cat.services.filter(service => service.hasAdvancedOption)]);
+        newServicesList.push([...cat.services]);
       });
       this.setState({ _localServicesList: flattenDeep(newServicesList) });
     }
@@ -77,7 +78,7 @@ class OneStepServiceMode extends Component {
               <Colxx xxs="12">
                 <Card>
                   {this.props.selectedService.hasOwnProperty("id") ? (
-                    <CardBody>
+                    <CardBody  className="wizard wizard-default">
                       <CardTitle>
                         <IntlMessages id="form-components.dropzone" />
                       </CardTitle>
