@@ -11,6 +11,7 @@ import Breadcrumb from "../../../containers/navs/Breadcrumb";
 import { Row, Card, CardBody, CardTitle, Button, Badge } from "reactstrap";
 
 import { useHistory } from "react-router-dom";
+import { statusColor } from "../../../helpers/Utils";
 
 const AllOeders = props => {
   useEffect(() => {
@@ -19,11 +20,6 @@ const AllOeders = props => {
       // cleanup
     };
   }, []);
-
-  const statusColor = order => {
-    return "primary";
-  };
-  console.log("props.allOrdersList", props.allOrdersList);
 
   return (
     <Fragment>
@@ -40,29 +36,7 @@ const AllOeders = props => {
           </Card>
 
           {props.allOrdersList.length > 0 ? (
-            props.allOrdersList.map(order => (
-              <Card className="d-flex flex-row mb-3" key={order.id}>
-                <NavLink to={`/app/orders/details/${order.id}`} className="d-flex flex-grow-1 min-width-zero">
-                  <CardBody className="align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
-                    <h3 location={{}} className="list-item-heading mb-1 truncate w-20 w-xs-100">
-                      {order.id}
-                    </h3>
-                    <p className="mb-1 text-muted text-small w-15 w-xs-100">{order.serviceType}</p>
-                    <p className="mb-1 text-muted text-small w-15 w-xs-100">
-                      <strong>{order.total}</strong> - {order.paymentMethod}
-                    </p>
-                    <p className="mb-1 text-muted text-small w-15 w-xs-100">{order.status.time}</p>
-
-                    <div className="w-15 w-xs-100 text-right">
-                      {/* <p className="mb-1 text-muted text-small w-15 w-xs-100">{}</p> */}
-                      <Badge color={statusColor(order)} pill>
-                        {order.status.value}
-                      </Badge>
-                    </div>
-                  </CardBody>
-                </NavLink>
-              </Card>
-            ))
+            props.allOrdersList.map(order => <OrderCard key={order.id} order={{ ...order }} orderStates={{ ...props.orderStates }} />)
           ) : (
             <div className="display-1 text-center m-5 py-5 text-info">Please Select Service</div>
           )}
@@ -74,6 +48,37 @@ const AllOeders = props => {
 
 const mapStateToProps = ({ orders }) => ({
   allOrdersList: orders.allOrdersList,
+  orderStates: orders.orderStates,
 });
 
 export default connect(mapStateToProps, { getAllOrdersList, setSelectedOrder })(AllOeders);
+
+function OrderCard(props) {
+  let statusObj = statusColor(props.order, props.orderStates);
+  return (
+    <Card className="d-flex flex-row mb-3 order-card">
+      <NavLink to={`/app/orders/details/${props.order.id}`} className="d-flex flex-grow-1 min-width-zero">
+        <CardBody className="align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
+          <h3 location={{}} className="list-item-heading mb-1 truncate w-20 w-xs-100">
+            <strong>
+              <IntlMessages id="orders.OrderId" />
+            </strong>
+            {props.order.id}
+          </h3>
+          <p className="mb-1 text-muted text-small w-15 w-xs-100">{props.order.serviceType}</p>
+          <p className="mb-1 text-muted text-small w-15 w-xs-100">
+            <strong>{props.order.total}</strong> - {props.order.paymentMethod}
+          </p>
+          <p className="mb-1 text-muted text-small w-15 w-xs-100">{props.order.status.time}</p>
+
+          <div className="w-15 w-xs-100 text-right">
+            {/* <p className="mb-1 text-muted text-small w-15 w-xs-100">{}</p> */}
+            <Badge color={statusObj.color} pill>
+              {statusObj.text}
+            </Badge>
+          </div>
+        </CardBody>
+      </NavLink>
+    </Card>
+  );
+}

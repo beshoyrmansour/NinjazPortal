@@ -46,6 +46,7 @@ module.exports = {
   "menu.orders": "Orders",
   "menu.orders.order_details": "Order details",
   "menu.details": "Details",
+  "orders.OrderId": "Order No.",
   "menu.finance": "Finance",
   "menu.account": "Account",
   "menu.help_center": "Help center",

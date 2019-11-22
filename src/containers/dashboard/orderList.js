@@ -4,7 +4,7 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import { Card, CardBody, CardTitle, Badge } from "reactstrap";
 
 import IntlMessages from "../../helpers/IntlMessages";
-import { getOrderIcon } from "../../helpers/Utils";
+import { getOrderIcon, statusColor } from "../../helpers/Utils";
 
 const OrderList = props => {
   return (
@@ -17,8 +17,8 @@ const OrderList = props => {
           <PerfectScrollbar options={{ suppressScrollX: true, wheelPropagation: false }}>
             {props.odersData.map((order, index) => {
               return (
-                <div key={index} className=" mb-3 pb-3 border-bottom">
-                  <NavLink to={"/app/orders/details/" + order.id} className="d-flex flex-row align-items-baseline">
+                <Card key={index} className=" mb-4 border-bottom  order-card">
+                  <NavLink to={"/app/orders/details/" + order.id} className="d-flex flex-row align-items-baseline card-body">
                     <p src={order.thumb} alt={order.id} className="img-thumbnail border-0 rounded-circle list-thumbnail align-self-center xsmall">
                       <i className={getOrderIcon(order.type)}></i>
                     </p>
@@ -29,11 +29,11 @@ const OrderList = props => {
                         Last Activity: <span className="text-muted"> {order.status.time}</span>
                       </p>
                     </div>
-                    <Badge color="outline-primary" pill className="font-weight-medium mb-2 ">
-                      <span className="">{order.status.value}</span>
+                    <Badge color={"outline-" + statusColor(order).color } pill className="font-weight-medium mb-2 ">
+                      <span className="">{statusColor(order).text}</span>
                     </Badge>
                   </NavLink>
-                </div>
+                </Card>
               );
             })}
           </PerfectScrollbar>

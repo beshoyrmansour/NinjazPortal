@@ -2894,7 +2894,6 @@ main {
   pointer-events: none;
 }
 
-
 .list-thumbnail {
   border-radius: $border-radius;
   padding: 0;
@@ -3013,7 +3012,7 @@ main {
 }
 
 .dashboard-list-with-user {
-  height: 270px;
+  height: 430px;
 }
 
 .dashboard-donut-chart {
@@ -3933,7 +3932,6 @@ select.form-control:not([size]):not([multiple]) {
   height: initial;
 }
 
-
 .custom-control-input:disabled ~ .custom-control-label::before {
   background-color: rgba($primary-color, 0.25) !important;
 }
@@ -4011,14 +4009,14 @@ select.form-control:not([size]):not([multiple]) {
   outline: initial !important;
 }
 
-
 .check-all {
   padding-top: 0;
 
   label.custom-control-label {
     vertical-align: top;
     line-height: initial !important;
-    &:before, &:after {
+    &:before,
+    &:after {
       border: initial !important;
       background: initial !important;
     }
@@ -4034,7 +4032,6 @@ select.form-control:not([size]):not([multiple]) {
       &:after {
         top: 0 !important;
       }
-  
     }
   }
 
@@ -4048,7 +4045,6 @@ select.form-control:not([size]):not([multiple]) {
         $button-text-color
       )+"' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
   }
-
 }
 
 .custom-control-label::before {
@@ -7261,8 +7257,9 @@ i.large-icon {
 /* 43.Rounded */
 
 .rounded {
-  .popover, .tooltip-inner {
-    border-radius:  $border-radius-rounded;
+  .popover,
+  .tooltip-inner {
+    border-radius: $border-radius-rounded;
   }
   .notification {
     border-radius: $border-radius-rounded;
@@ -8649,11 +8646,15 @@ i.large-icon {
   }
 }
 
-    .thank-you-logo {
-    width: 50vw;
-    height: 50vh;
-      background: url($logoPath) no-repeat;
-      background-position: center center;
-    // margin: auto;
-    }
-    
+.thank-you-logo {
+  width: 50vw;
+  height: 50vh;
+  background: url($logoPath) no-repeat;
+  background-position: center center;
+  // margin: auto;
+}
+
+.order-card:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transition: 0.5s;
+}

@@ -1,4 +1,9 @@
 import React, { Fragment } from "react";
+
+import { connect } from "react-redux";
+import { getAllOrdersList, setSelectedOrder } from "../../../redux/orders/actions";
+
+
 import { NavLink } from "react-router-dom";
 import { Row, Card, CardBody, CardTitle, Button } from "reactstrap";
 import IntlMessages from "../../../helpers/IntlMessages";
@@ -12,18 +17,12 @@ const odersData = [
     detail: "Hello detail",
     type: "translation",
     status: {
-      value: "Under Prossesing",
+      id: "os_pending_admin_approval",
       time: "09.08.2018 - 12:45",
     },
-  },
-  {
-    id: "634784689245",
-    detail: "Hello detail",
-    type: "legel",
-    status: {
-      value: "Under Prossesing",
-      time: "09.08.2018 - 12:45",
-    },
+    total: "1,196.12 EGP",
+    serviceType: "Translation - Arabic - English",
+    paymentMethod: "Cash On Delivery (COD)",
   },
 ];
 const dashboard = props => {
@@ -80,7 +79,7 @@ const dashboard = props => {
         </Row>
         <Row>
           <Colxx xxs="12" md="4" className="mb-4">
-            <OrderList odersData={odersData} />
+            <OrderList odersData={props.allOrdersList} />
           </Colxx>
           <Colxx xxs="12" md="8" className="mb-4">
             <Card>
@@ -128,4 +127,10 @@ const dashboard = props => {
   );
 };
 
-export default dashboard;
+const mapStateToProps = ({ orders }) => ({
+  allOrdersList: orders.allOrdersList,
+  orderStates: orders.orderStates,
+});
+
+export default connect(mapStateToProps, { getAllOrdersList, setSelectedOrder })(dashboard);
+
