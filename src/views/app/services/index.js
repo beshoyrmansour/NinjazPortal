@@ -9,18 +9,9 @@ const Services = ({ match }) => (
   <Suspense fallback={<div className="loading" />}>
     <Switch>
       <Redirect exact from={`${match.url}/`} to={`${match.url}/all`} />
-      <Route
-        path={`${match.url}/all`}
-        render={props => <ServicesLsit {...props} />}
-      />
-      <Route
-        path={`${match.url}/easy`}
-        render={props => <OneStepService {...props} />}
-      />
-      <Route
-        path={`${match.url}/advanced`}
-        render={props => <MultiStepService {...props} />}
-      />
+      <Route path={`${match.url}/all`} render={props => <ServicesLsit {...props} />} />
+      <Route path={`${match.url}/easy`} render={props => <OneStepService {...props} />} />
+      <Route path={`${match.url}/advanced`} render={props => <MultiStepService {...props} />} />
       <Redirect to="/error" />
     </Switch>
   </Suspense>

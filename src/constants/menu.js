@@ -29,25 +29,25 @@ const data = [
     ]
   },
   {
-    id: "menu_my_order",
+    id: "menu_order",
     // icon: "simple-icon-notebook",
     // icon: "iconsminds-library",
     icon: "simple-icon-basket",
-    label: "menu.my_order",
-    to: "/app/blank-page"
+    label: "menu.orders",
+    to: "/app/orders"
   },
   {
-    id: "menu_my_finance",
+    id: "menu_finance",
     icon: "iconsminds-coins",
-    label: "menu.my_finance",
+    label: "menu.finance",
     to: "/"
   },
   {
-    id: "menu_my_account",
+    id: "menu_account",
     // icon: "simple-icon-credit-card",
     // icon: "iconsminds-money-bag",
     icon: "simple-icon-wallet",
-    label: "menu.my_account",
+    label: "menu.account",
     to: "/"
   },
   {

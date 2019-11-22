@@ -6,6 +6,7 @@ import { setSelectedService } from "../../../redux/services/actions";
 import IntlMessages from "../../../helpers/IntlMessages";
 import { Colxx, Separator } from "../../../components/common/CustomBootstrap";
 import Breadcrumb from "../../../containers/navs/Breadcrumb";
+
 import {
   Row,
   Card,
@@ -35,6 +36,22 @@ import "rc-switch/assets/index.css";
 import { flattenDeep } from "lodash";
 
 import Select, { components } from "react-select";
+
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import "react-quill/dist/quill.bubble.css";
+
+const quillModules = {
+  toolbar: [
+    ["bold", "italic", "underline", "strike", "blockquote"],
+    [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
+    ["link", "image"],
+    ["clean"],
+  ],
+};
+
+const quillFormats = ["header", "bold", "italic", "underline", "strike", "blockquote", "list", "bullet", "indent", "link", "image"];
+
 const CustomSelectInput = props => {
   var customProps = Object.assign({}, props);
   delete customProps.autoCorrect;
@@ -364,11 +381,11 @@ class MultiStepServiceMode extends Component {
                       <Step id="specialInstructionsStep" name={messages["form.specialInstructions"]}>
                         <div className="wizard-basic-step">
                           <Form>
-                            <FormGroup className="d-flex justify-content-center align-items-center">
-                              <Label className="mr-2 mb-0">
+                            <FormGroup className="d-flex flex-column justify-content-center align-items-start">
+                              <Label className="mr-2 mb-2">
                                 <IntlMessages id="form.specialInstructions" />
                               </Label>
-                              <Input
+                              {/* <Input
                                 type="text"
                                 name="specialInstructions"
                                 placeholder={messages["form.specialInstructions"]}
@@ -376,6 +393,16 @@ class MultiStepServiceMode extends Component {
                                 onChange={e => {
                                   this.setState({ specialInstructions: e.target.value });
                                 }}
+                              /> */}
+                              <ReactQuill
+                                theme="snow"
+                                className="w-100"
+                                value={this.state.specialInstructions}
+                                onChange={textQuillStandart => {
+                                  this.setState({ textQuillStandart });
+                                }}
+                                modules={quillModules}
+                                formats={quillFormats}
                               />
                             </FormGroup>
                           </Form>
