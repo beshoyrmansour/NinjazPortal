@@ -388,13 +388,11 @@ class MultiStepServiceMode extends Component {
                               <Label className="mr-2 mb-0">
                                 <IntlMessages id="form.requiredSample" />
                               </Label>
-                              <Input
-                                type="text"
-                                name="requiredSample"
-                                placeholder={messages["form.requiredSample"]}
-                                value={this.state.requiredSample}
+                              <Switch
+                                className="custom-switch custom-switch-primary"
+                                checked={this.state.requiredSample}
                                 onChange={e => {
-                                  this.setState({ requiredSample: e.target.value });
+                                  this.setState({ requiredSample: e });
                                 }}
                               />
                             </FormGroup>
