@@ -1,7 +1,7 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 import { connect } from "react-redux";
-import { getAllOrdersList, setSelectedOrder } from "../../../redux/orders/actions";
+import { getAllOrdersList, getOrderDetails } from "../../../redux/orders/actions";
 
 import { NavLink } from "react-router-dom";
 
@@ -9,13 +9,51 @@ import IntlMessages from "../../../helpers/IntlMessages";
 import { Colxx, Separator } from "../../../components/common/CustomBootstrap";
 import Breadcrumb from "../../../containers/navs/Breadcrumb";
 import { Row, Card, CardBody, CardTitle, Button, Badge } from "reactstrap";
-
+import { findIndex } from "lodash";
 import { useHistory } from "react-router-dom";
 
 const OrderDetails = props => {
+  const { selectedOrder, orderStates } = props;
   let history = useHistory();
-  console.log("match", props.match.params.id);
+  // const [_selectedOrder, set_selectedOrder] = useState({});
+  const [currentOrderStates, setCurrentOrderStates] = useState([]);
+  const [selectedOrderStatusIndex, setSelectedOrderStatusIndex] = useState(null);
+  // console.log("match", props.match.params.id);
+  const selectedOrderId = props.match.params.id;
+  useEffect(() => {
+    if (selectedOrderId) {
+      props.getOrderDetails(selectedOrderId);
+    } else {
+      history.goBack();
+    }
+    return () => {};
+  }, []);
+  useEffect(() => {
+    console.log("props.selectedOrder", props.selectedOrder);
+    // orderStates.forEach((st, index) => {
+    //   if (st.id === selectedOrder.status.id) {
+    //      console.log('index',index);
 
+    //   }
+    // });
+
+    if (orderStates.length > 0 && selectedOrder.hasOwnProperty("id")) {
+      setSelectedOrderStatusIndex(findIndex(orderStates, st => st.id === selectedOrder.status.id));
+    }
+    return () => {};
+  }, [selectedOrder]);
+
+  const selectedOrderStatusClass = index => {
+    return selectedOrderStatusIndex > index
+      ? "success"
+      : selectedOrderStatusIndex === index
+      ? "info"
+      : "light" > index
+      ? "success"
+      : selectedOrderStatusIndex === index
+      ? "info"
+      : "light";
+  };
   return (
     <Fragment>
       <Row>
@@ -28,7 +66,24 @@ const OrderDetails = props => {
       <Row>
         <Colxx xxs="12">
           <Card className="mb-4 rounded shadow">
-            <CardBody></CardBody>
+            <CardBody>
+              {selectedOrder ? (
+                <Fragment>
+                  <div className="d-flex flex-column flex-md-row justify-content-between align-items-md-center progress-line">
+                    {orderStates.map((status, index) => (
+                      <Button color={selectedOrderStatusClass(index)} className="m-1 status-step" size="xs">
+                        {status.value}
+                      </Button>
+                    ))}
+                  </div>
+                </Fragment>
+              ) : (
+                <div class="loading" />
+              )}
+            </CardBody>
+            <CardBody>
+              
+            </CardBody>
           </Card>
         </Colxx>
       </Row>
@@ -37,7 +92,9 @@ const OrderDetails = props => {
 };
 
 const mapStateToProps = ({ orders }) => ({
-  allOrdersList: orders.allOrdersList,
+  orderStates: orders.orderStates,
+  selectedOrder: orders.selectedOrder,
+  // allOrdersList: orders.allOrdersList,
 });
 
-export default connect(mapStateToProps, { getAllOrdersList, setSelectedOrder })(OrderDetails);
+export default connect(mapStateToProps, { getAllOrdersList, getOrderDetails })(OrderDetails);

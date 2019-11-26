@@ -8658,3 +8658,23 @@ i.large-icon {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   transition: 0.5s;
 }
+.progress-line {
+  position: relative;
+}
+.progress-line:before {
+  content: "";
+  position: absolute;
+  border-top: 1px #e2e2e2 solid;
+  bottom: 50%;
+  left: 2%;
+  width: 95%;
+  z-index: 0;
+  // padding: 0px 0.5rem;
+
+  @include respond-below(sm) {
+    width: 0px;
+  }
+}
+.status-step {
+  z-index: 1;
+}

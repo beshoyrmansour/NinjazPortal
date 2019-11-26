@@ -58,7 +58,7 @@ function OrderCard(props) {
   return (
     <Card className="d-flex flex-row mb-3 order-card">
       <NavLink to={`/app/orders/details/${props.order.id}`} className="d-flex flex-grow-1 min-width-zero">
-        <CardBody className="align-self-center d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
+        <CardBody className="d-flex flex-column flex-md-row justify-content-between min-width-zero align-items-md-center">
           <h3 location={{}} className="list-item-heading mb-1 truncate w-20 w-xs-100">
             <strong>
               <IntlMessages id="orders.OrderId" />

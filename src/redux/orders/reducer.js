@@ -84,6 +84,7 @@ const INIT_STATE = {
     { id: "os_order_completed", value: "Order Completed" },
     { id: "os_order_cancelled", value: "Order cancelled" },
   ],
+  selectedOrder: {},
 };
 
 export default (state = INIT_STATE, action) => {
@@ -91,7 +92,7 @@ export default (state = INIT_STATE, action) => {
     case ORDERS.LOAD_ORDERS_CATEGORY_LIST:
       return { ...state, allOrdersList: action.payload };
       return;
-    case ORDERS.SET_SELECTED_SERVICE:
+    case ORDERS.SET_SELECTED_ORDER:
       return { ...state, selectedOrder: action.payload };
     // return { ...state, locale:action.payload};
 
