@@ -40,7 +40,7 @@ const data = [
     id: "menu_finance",
     icon: "iconsminds-coins",
     label: "menu.finance",
-    to: "/"
+    to: "/app/finance"
   },
   {
     id: "menu_account",
@@ -48,7 +48,7 @@ const data = [
     // icon: "iconsminds-money-bag",
     icon: "simple-icon-wallet",
     label: "menu.account",
-    to: "/"
+    to: "/app/account"
   },
   {
     id: "menu_help_center",

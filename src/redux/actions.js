@@ -12,12 +12,23 @@ export const SERVICES = {
   LOAD_SERVICES_CATEGORY_LIST: "SERVICES_LOAD_SERVICES_CATEGORY_LIST",
   SET_SELECTED_SERVICE: "SERVICES_SET_SELECTED_SERVICE",
 };
+
 export const ORDERS = {
   LOAD_ALL_ORDERS: "ORDERS_LOAD_ALL_ORDERS_LIST",
   SET_SELECTED_ORDER: "ORDERS_SET_SELECTED_ORDER",
+};
+
+export const INVOICES = {
+  LOAD_ALL_INVOICES: "INVOICES_LOAD_ALL_INVOICES_LIST",
+  SET_SELECTED_INVOICE: "INVOICES_SET_SELECTED_INVOICE",
+};
+export const ACCOUNT = {
+  SET_ACCOUNT_DATA: "ACCOUNT_SET_ACCOUNT_DATA",
+  SET_SELECTED_INVOICE: "INVOICES_SET_SELECTED_INVOICE",
 };
 
 export * from "./menu/actions";
 export * from "./settings/actions";
 export * from "./services/actions";
 export * from "./orders/actions";
+export * from "./account/actions";
