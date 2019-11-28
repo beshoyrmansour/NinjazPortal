@@ -1,8 +1,7 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 
 import { connect } from "react-redux";
 import { getAllOrdersList, setSelectedOrder } from "../../../redux/orders/actions";
-
 
 import { NavLink } from "react-router-dom";
 import { Row, Card, CardBody, CardTitle, Button } from "reactstrap";
@@ -10,7 +9,7 @@ import IntlMessages from "../../../helpers/IntlMessages";
 import { Colxx, Separator } from "../../../components/common/CustomBootstrap";
 import VideoPlayer from "../../../components/common/VideoPlayer";
 import Breadcrumb from "../../../containers/navs/Breadcrumb";
-import OrderList from "../../../containers/dashboard/orderList";
+import OrderList from "./orderList";
 const odersData = [
   {
     id: "634784689245",
@@ -26,6 +25,10 @@ const odersData = [
   },
 ];
 const dashboard = props => {
+  // useEffect(() => {
+  //   props.getAllOrdersList();
+  //   return () => {};
+  // }, []);
   return (
     <div>
       <Fragment>
@@ -56,7 +59,6 @@ const dashboard = props => {
                     <NavLink to="services/easy">
                       <Button color="outline-primary" block size="lg">
                         <span className="h3">
-                          {" "}
                           <i className="simple-icon-emotsmile"></i> Easy mode
                         </span>
                       </Button>
@@ -66,7 +68,6 @@ const dashboard = props => {
                     <NavLink to="services/advanced">
                       <Button color="outline-dark" block size="lg">
                         <span className="h3">
-                          {" "}
                           <i className="simple-icon-clock"></i> Advanced mode
                         </span>
                       </Button>
@@ -133,4 +134,3 @@ const mapStateToProps = ({ orders }) => ({
 });
 
 export default connect(mapStateToProps, { getAllOrdersList, setSelectedOrder })(dashboard);
-

@@ -29,14 +29,6 @@ const OrderDetails = props => {
     return () => {};
   }, []);
   useEffect(() => {
-    console.log("props.selectedOrder", props.selectedOrder);
-    // orderStates.forEach((st, index) => {
-    //   if (st.id === selectedOrder.status.id) {
-    //      console.log('index',index);
-
-    //   }
-    // });
-
     if (orderStates.length > 0 && selectedOrder.hasOwnProperty("id")) {
       setSelectedOrderStatusIndex(findIndex(orderStates, st => st.id === selectedOrder.status.id));
     }
@@ -81,9 +73,7 @@ const OrderDetails = props => {
                 <div class="loading" />
               )}
             </CardBody>
-            <CardBody>
-              
-            </CardBody>
+            <CardBody></CardBody>
           </Card>
         </Colxx>
       </Row>

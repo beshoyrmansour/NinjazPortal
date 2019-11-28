@@ -3,8 +3,8 @@ import { NavLink } from "react-router-dom";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import { Card, CardBody, CardTitle, Badge } from "reactstrap";
 
-import IntlMessages from "../../helpers/IntlMessages";
-import { getOrderIcon, statusColor } from "../../helpers/Utils";
+import IntlMessages from "../../../helpers/IntlMessages";
+import { getOrderIcon, orderStatusColor } from "../../../helpers/Utils";
 
 const OrderList = props => {
   return (
@@ -29,8 +29,8 @@ const OrderList = props => {
                         Last Activity: <span className="text-muted"> {order.status.time}</span>
                       </p>
                     </div>
-                    <Badge color={"outline-" + statusColor(order).color } pill className="font-weight-medium mb-2 ">
-                      <span className="">{statusColor(order).text}</span>
+                    <Badge color={"outline-" + orderStatusColor(order).color} pill className="font-weight-medium mb-2 ">
+                      <span className="">{orderStatusColor(order).text}</span>
                     </Badge>
                   </NavLink>
                 </Card>

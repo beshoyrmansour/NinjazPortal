@@ -11,7 +11,7 @@ import Breadcrumb from "../../../containers/navs/Breadcrumb";
 import { Row, Card, CardBody, CardTitle, Button, Badge } from "reactstrap";
 
 import { useHistory } from "react-router-dom";
-import { statusColor } from "../../../helpers/Utils";
+import { orderStatusColor } from "../../../helpers/Utils";
 
 const AllOeders = props => {
   useEffect(() => {
@@ -38,7 +38,14 @@ const AllOeders = props => {
           {props.allOrdersList.length > 0 ? (
             props.allOrdersList.map(order => <OrderCard key={order.id} order={{ ...order }} orderStates={{ ...props.orderStates }} />)
           ) : (
-            <div className="display-1 text-center m-5 py-5 text-info">Please Select Service</div>
+            <Fragment>
+              <div className="display-1 text-center m-5 pt-5 text-info">No Orders yet</div>
+              <div className="text-center">
+                <NavLink to={`/app/services`} className="display-3 py-5 text-dark">
+                  Let's Place your first order
+                </NavLink>
+              </div>
+            </Fragment>
           )}
         </Colxx>
       </Row>
@@ -54,7 +61,7 @@ const mapStateToProps = ({ orders }) => ({
 export default connect(mapStateToProps, { getAllOrdersList, setSelectedOrder })(AllOeders);
 
 function OrderCard(props) {
-  let statusObj = statusColor(props.order, props.orderStates);
+  let statusObj = orderStatusColor(props.order, props.orderStates);
   return (
     <Card className="d-flex flex-row mb-3 order-card">
       <NavLink to={`/app/orders/details/${props.order.id}`} className="d-flex flex-grow-1 min-width-zero">

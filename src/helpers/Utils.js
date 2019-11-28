@@ -73,7 +73,36 @@ const orderStates = [
   { id: "os_order_completed", value: "Order Completed" },
   { id: "os_order_cancelled", value: "Order cancelled" },
 ];
-export const statusColor = order => {
+
+export const invoiceStatusColor = invoice => {
+  if (invoice) {
+    switch (invoice.status.id) {
+      case orderStates[0].id:
+        return { text: orderStates[0].value, color: "warning" };
+
+      case orderStates[1].id:
+        return { text: orderStates[1].value, color: "primary" };
+
+      case orderStates[2].id:
+        return { text: orderStates[2].value, color: "danger" };
+
+      case orderStates[3].id:
+        return { text: orderStates[3].value, color: "info" };
+
+      case orderStates[4].id:
+        return { text: orderStates[4].value, color: "success" };
+
+      case orderStates[5].id:
+        return { text: orderStates[5].value, color: "dark" };
+
+      default:
+        return { text: "No DATA", color: "light" };
+    }
+  } else {
+    return { text: "No DATA", color: "light" };
+  }
+};
+export const orderStatusColor = order => {
   if (order) {
     switch (order.status.id) {
       case orderStates[0].id:
@@ -95,7 +124,9 @@ export const statusColor = order => {
         return { text: orderStates[5].value, color: "dark" };
 
       default:
-        return "primary";
+        return { text: "No DATA", color: "light" };
     }
+  } else {
+    return { text: "No DATA", color: "light" };
   }
 };
