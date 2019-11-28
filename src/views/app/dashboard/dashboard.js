@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, Component } from "react";
 
 import { connect } from "react-redux";
 import { getAllOrdersList, setSelectedOrder } from "../../../redux/orders/actions";
@@ -10,31 +10,17 @@ import { Colxx, Separator } from "../../../components/common/CustomBootstrap";
 import VideoPlayer from "../../../components/common/VideoPlayer";
 import Breadcrumb from "../../../containers/navs/Breadcrumb";
 import OrderList from "./orderList";
-const odersData = [
-  {
-    id: "634784689245",
-    detail: "Hello detail",
-    type: "translation",
-    status: {
-      id: "os_pending_admin_approval",
-      time: "09.08.2018 - 12:45",
-    },
-    total: "1,196.12 EGP",
-    serviceType: "Translation - Arabic - English",
-    paymentMethod: "Cash On Delivery (COD)",
-  },
-];
-const dashboard = props => {
-  // useEffect(() => {
-  //   props.getAllOrdersList();
-  //   return () => {};
-  // }, []);
-  return (
-    <div>
+
+export class dashboard extends Component {
+  componentWillMount() {
+    this.props.getAllOrdersList();
+  }
+  render() {
+    return (
       <Fragment>
         <Row>
           <Colxx xxs="12" md="12">
-            <Breadcrumb heading="menu.dashboard" match={props.match} />
+            <Breadcrumb heading="menu.dashboard" match={this.props.match} />
             <Separator className="mb-5" />
           </Colxx>
         </Row>
@@ -80,7 +66,7 @@ const dashboard = props => {
         </Row>
         <Row>
           <Colxx xxs="12" md="4" className="mb-4">
-            <OrderList odersData={props.allOrdersList} />
+            <OrderList odersData={this.props.allOrdersList} />
           </Colxx>
           <Colxx xxs="12" md="8" className="mb-4">
             <Card>
@@ -124,9 +110,9 @@ const dashboard = props => {
           </Colxx>
         </Row>
       </Fragment>
-    </div>
-  );
-};
+    );
+  }
+}
 
 const mapStateToProps = ({ orders }) => ({
   allOrdersList: orders.allOrdersList,
