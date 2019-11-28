@@ -7,8 +7,8 @@ import { NavLink } from "react-router-dom";
 
 import IntlMessages from "../../../helpers/IntlMessages";
 import { Colxx, Separator } from "../../../components/common/CustomBootstrap";
-import Breadcrumb from "../../../containers/navs/Breadcrumb";
 import { Row, Card, CardBody, CardTitle, Button, Badge } from "reactstrap";
+import Breadcrumb from "../../../containers/navs/Breadcrumb";
 import { findIndex } from "lodash";
 import { useHistory } from "react-router-dom";
 
