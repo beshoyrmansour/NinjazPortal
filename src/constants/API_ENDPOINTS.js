@@ -1,8 +1,8 @@
 const hostname = window && window.location && window.location.hostname;
 console.log(hostname);
 
-const prod = "http://hostname/api";
-const dev = "http://ninjaz.me/api";
+const prod = "https://hostname/api";
+const dev = "https://ninjaz.me/api";
 
 let base = dev;
 
