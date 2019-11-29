@@ -1,6 +1,7 @@
 import { SERVICES } from "../actions";
 
 const INIT_STATE = {
+  servicesTypes: [],
   servicesCategoryList: [
     {
       id: "c1",
@@ -89,23 +90,25 @@ const INIT_STATE = {
   ],
   selectedService: {},
 
-  currenciesList:[
-    {id:"c1", label:"AED", value:"AED"},
-    {id:"c2", label:"EGP", value:"EGP"},
-    {id:"c3", label:"SAR", value:"SAR"},
-    {id:"c4", label:"EUR", value:"EUR"},
-    {id:"c5", label:"USD", value:"USD"},
-  ]
+  currenciesList: [
+    { id: "c1", label: "AED", value: "AED" },
+    { id: "c2", label: "EGP", value: "EGP" },
+    { id: "c3", label: "SAR", value: "SAR" },
+    { id: "c4", label: "EUR", value: "EUR" },
+    { id: "c5", label: "USD", value: "USD" },
+  ],
 };
 
 export default (state = INIT_STATE, action) => {
   switch (action.type) {
-    case SERVICES.LOAD_SERVICES_CATEGORY_LIST:
+    case SERVICES.GET_ALL_SERVICES_TYPES:
+      return { ...state, servicesTypes: action.payload };
+
+      case SERVICES.LOAD_SERVICES_CATEGORY_LIST:
       return { ...state, servicesCategoryList: action.payload };
-      return;
-    case SERVICES.SET_SELECTED_SERVICE:
+
+      case SERVICES.SET_SELECTED_SERVICE:
       return { ...state, selectedService: action.payload };
-    // return { ...state, locale:action.payload};
 
     default:
       return { ...state };

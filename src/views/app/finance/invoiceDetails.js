@@ -84,7 +84,6 @@ const mapStateToProps = ({ invoices }) => ({
   allInvoicesList: invoices.allInvoicesList,
   selectedInvoice: invoices.selectedInvoice,
   invoiceStates: invoices.invoiceStates,
-  
 });
 
 export default connect(mapStateToProps, { getAllInvoicesList, getInvoiceDetails })(InvoiceDetails);

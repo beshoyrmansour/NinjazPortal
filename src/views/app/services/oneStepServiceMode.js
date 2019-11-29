@@ -1,7 +1,7 @@
-import React, { Component, Fragment } from "react";
+import React, { useState, useEffect, useRef, Fragment } from "react";
 
 import { connect } from "react-redux";
-import { setSelectedService } from "../../../redux/services/actions";
+import { getAllServicesTypes, setSelectedService } from "../../../redux/services/actions";
 import { injectIntl } from "react-intl";
 
 import { Row, Card, CardBody, CardTitle, Button } from "reactstrap";
@@ -20,85 +20,92 @@ const CustomSelectInput = props => {
   return <components.Input {...customProps} />;
 };
 
-class OneStepServiceMode extends Component {
-  constructor(props) {
-    super(props);
-    this.handleSelectedServiceChange = this.handleSelectedServiceChange.bind(this);
-    this.state = {
-      _localServicesList: [],
-    };
-  }
-  handleSelectedServiceChange(service) {
-    this.props.setSelectedService(service);
-  }
-  fill_localServicesList() {
+const OneStepServiceMode = props => {
+  const refZone = useRef(null);
+  const { servicesTypes } = props;
+  const [localServicesList, setLocalServicesList] = useState([]);
+  const fillServicesList = () => {
     let newServicesList = [];
-    if (this.props.servicesCategoryList.length > 0) {
-      this.props.servicesCategoryList.forEach(cat => {
-        // newServicesList.push([...cat.services.filter(service => service.hasAdvancedOption)]);
-        newServicesList.push([...cat.services]);
-      });
-      this.setState({ _localServicesList: flattenDeep(newServicesList) });
+    servicesTypes.forEach(serviceType => {
+      // newServicesList.push([...serviceType.services.filter(service => service.hasAdvancedOption)]);
+      newServicesList.push([...serviceType[serviceType.is_translation ? "TranslationTypes" : "Services"]]);
+    });
+    setLocalServicesList(flattenDeep(newServicesList));
+  };
+  const handleSelectedServiceChange = service => {
+    props.setSelectedService(service);
+  };
+  useEffect(() => {
+    if (servicesTypes.length > 0) {
+      fillServicesList();
+    } else {
+      props.getAllServicesTypes();
     }
-  }
-  componentDidMount() {
-    this.fill_localServicesList();
-  }
-  render() {
-    return (
-      <Fragment>
-        <Row>
-          <Colxx xxs="12">
-            <Breadcrumb heading="menu.services.one_step_service_mode" match={this.props.match} />
-            <Separator className="mb-5" />
-          </Colxx>
-        </Row>
+    return () => {
+      props.setSelectedService({});
+    };
+  }, []);
 
-        <Row>
-          <Colxx xxs="12" className="mb-4">
-            <Card className="rounded shadow">
-              <CardBody>
-                <Select
-                  components={{ Input: CustomSelectInput }}
-                  className="react-select"
-                  classNamePrefix="react-select"
-                  name="form-field-name"
-                  autoFocus
-                  value={this.props.selectedService}
-                  getOptionLabel={option => option.title}
-                  onChange={this.handleSelectedServiceChange}
-                  options={this.state._localServicesList}
-                  //   getOptionValue={option => option}
-                />
-              </CardBody>
-            </Card>
-          </Colxx>
-          <Colxx xxs="12" className="mb-4">
-            <Row className="mb-4">
-              <Colxx xxs="12">
-                <Card>
-                  {this.props.selectedService.hasOwnProperty("id") ? (
-                    <CardBody  className="wizard wizard-default">
-                      <CardTitle>
-                        <IntlMessages id="form-components.dropzone" />
-                      </CardTitle>
-                      <Dropzone ref={node => (this.dropzone = node)} />
-                    </CardBody>
-                  ) : (
-                    <div className="display-1 text-center m-5 py-5 text-info">Please Select Service</div>
-                  )}
-                </Card>
-              </Colxx>
-            </Row>
-          </Colxx>
-        </Row>
-      </Fragment>
-    );
-  }
-}
+  useEffect(() => {
+    fillServicesList();
+    return () => {};
+  }, [servicesTypes]);
+
+  return (
+    <Fragment>
+      <Row>
+        <Colxx xxs="12">
+          <Breadcrumb heading="menu.services.one_step_service_mode" match={props.match} />
+          <Separator className="mb-5" />
+        </Colxx>
+      </Row>
+
+      <Row>
+        <Colxx xxs="12" className="mb-4">
+          <Card className="rounded shadow">
+            <CardBody>
+              <Select
+                components={{ Input: CustomSelectInput }}
+                className="react-select"
+                classNamePrefix="react-select"
+                name="form-field-name"
+                autoFocus
+                value={props.selectedService}
+                getOptionLabel={option => option.name}
+                onChange={handleSelectedServiceChange}
+                options={localServicesList}
+                //   getOptionValue={option => option}
+              />
+            </CardBody>
+          </Card>
+        </Colxx>
+        <Colxx xxs="12" className="mb-4">
+          <Row className="mb-4">
+            <Colxx xxs="12">
+              <Card>
+                {props.selectedService.hasOwnProperty("id") ? (
+                  <CardBody className="wizard wizard-default">
+                    <CardTitle>
+                      <IntlMessages id="form-components.dropzone" />
+                    </CardTitle>
+                    <Dropzone ref={refZone} />
+                  </CardBody>
+                ) : (
+                  <div className="display-1 text-center m-5 py-5 text-info">Please Select Service</div>
+                )}
+              </Card>
+            </Colxx>
+          </Row>
+        </Colxx>
+      </Row>
+    </Fragment>
+  );
+};
+
 const mapStateToProps = ({ services }) => ({
   popularLanguages: services.popularLanguages,
   servicesCategoryList: services.servicesCategoryList,
+  servicesTypes: services.servicesTypes,
   selectedService: services.selectedService,
 });
-export default injectIntl(connect(mapStateToProps, { setSelectedService })(OneStepServiceMode));
+export default injectIntl(connect(mapStateToProps, { getAllServicesTypes, setSelectedService })(OneStepServiceMode));
