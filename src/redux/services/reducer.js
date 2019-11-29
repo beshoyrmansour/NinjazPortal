@@ -100,14 +100,15 @@ const INIT_STATE = {
 };
 
 export default (state = INIT_STATE, action) => {
+  
   switch (action.type) {
     case SERVICES.GET_ALL_SERVICES_TYPES:
       return { ...state, servicesTypes: action.payload };
 
-      case SERVICES.LOAD_SERVICES_CATEGORY_LIST:
+    case SERVICES.LOAD_SERVICES_CATEGORY_LIST:
       return { ...state, servicesCategoryList: action.payload };
 
-      case SERVICES.SET_SELECTED_SERVICE:
+    case SERVICES.SET_SELECTED_SERVICE:
       return { ...state, selectedService: action.payload };
 
     default:

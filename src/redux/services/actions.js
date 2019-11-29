@@ -1,4 +1,7 @@
 import { SERVICES } from "../actions";
+import { API_ENDPOINTS } from "../../constants/API_ENDPOINTS";
+import Axios from "axios";
+
 const mockServicesTypes = [
   {
     id: 1,
@@ -259,7 +262,15 @@ const mockServicesTypes = [
 
 export const getAllServicesTypes = () => {
   console.log("getAllServicesTypes");
-  
+  Axios.get(`${API_ENDPOINTS.ALL_SERVICE_TYPES}`, {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  })
+    .then(response => console.log(response))
+    .catch(err => console.log(err));
+  // .then(data => console.log(data));
   return {
     type: SERVICES.GET_ALL_SERVICES_TYPES,
     payload: [...mockServicesTypes],

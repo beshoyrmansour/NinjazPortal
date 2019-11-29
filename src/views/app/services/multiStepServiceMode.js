@@ -1,28 +1,13 @@
 import React, { Component, Fragment } from "react";
 
 import { connect } from "react-redux";
-import { setSelectedService } from "../../../redux/services/actions";
+import { getAllServicesTypes, setSelectedService } from "../../../redux/services/actions";
 
 import IntlMessages from "../../../helpers/IntlMessages";
 import { Colxx, Separator } from "../../../components/common/CustomBootstrap";
 import Breadcrumb from "../../../containers/navs/Breadcrumb";
 
-import {
-  Row,
-  Card,
-  CardBody,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  ButtonGroup,
-  Button,
-  ButtonToolbar,
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "reactstrap";
+import { Row, Card, CardBody, Form, FormGroup, Input, Label, ButtonGroup, Button, ButtonToolbar } from "reactstrap";
 import { Wizard, Steps, Step } from "react-albus";
 import { injectIntl } from "react-intl";
 import { BottomNavigation } from "./BottomNavigation";
@@ -132,8 +117,20 @@ class MultiStepServiceMode extends Component {
     }
   }
   componentDidMount() {
-    this.fill_localServicesList();
+    if (this.props.servicesTypes.length > 0) {
+      this.fill_localServicesList();
+    } else {
+      this.props.getAllServicesTypes();
+    }
+
     this.setState({ budgetCurrency: this.props.currenciesList[0] });
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextProps.servicesTypes.length > 0 && this.state._localServicesList.length === 0) {
+      this.fill_localServicesList();
+    }
+    return true;
   }
 
   render() {
@@ -473,8 +470,9 @@ class MultiStepServiceMode extends Component {
 const mapStateToProps = ({ services }) => ({
   currenciesList: services.currenciesList,
   selectedService: services.selectedService,
+  servicesTypes: services.servicesTypes,
   popularLanguages: services.popularLanguages,
   popularDeliveryTimes: services.popularDeliveryTimes,
   servicesCategoryList: services.servicesCategoryList,
 });
-export default injectIntl(connect(mapStateToProps, { setSelectedService })(MultiStepServiceMode));
+export default injectIntl(connect(mapStateToProps, { getAllServicesTypes, setSelectedService })(MultiStepServiceMode));

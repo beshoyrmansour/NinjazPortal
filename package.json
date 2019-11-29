@@ -54,6 +54,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://ninjaz.me",
   "eslintConfig": {
     "extends": "react-app"
   },
