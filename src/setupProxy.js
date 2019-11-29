@@ -4,7 +4,7 @@ module.exports = app => {
   app.use(
     "/api",
     proxy({
-      target: "http://localhost:4000",
+      target: "http://ninjaz.me/api",
       changeOrigin: true
     })
   );

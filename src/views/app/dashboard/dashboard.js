@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from "react";
 
 import { connect } from "react-redux";
-import { getAllOrdersList, setSelectedOrder } from "../../../redux/orders/actions";
+import { getCustomerTopOrder, getAllOrdersList, setSelectedOrder } from "../../../redux/orders/actions";
 
 import { NavLink } from "react-router-dom";
 import { Row, Card, CardBody, CardTitle, Button } from "reactstrap";
@@ -13,7 +13,7 @@ import OrderList from "./orderList";
 
 export class dashboard extends Component {
   componentWillMount() {
-    this.props.getAllOrdersList();
+    this.props.getCustomerTopOrder();
   }
   render() {
     return (
@@ -119,4 +119,4 @@ const mapStateToProps = ({ orders }) => ({
   orderStates: orders.orderStates,
 });
 
-export default connect(mapStateToProps, { getAllOrdersList, setSelectedOrder })(dashboard);
+export default connect(mapStateToProps, { getCustomerTopOrder, getAllOrdersList, setSelectedOrder })(dashboard);

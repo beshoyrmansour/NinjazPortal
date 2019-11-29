@@ -24,9 +24,9 @@ const OrderList = props => {
                     </p>
 
                     <div className="pl-3 pr-2 flex-grow-1 ">
-                      <p className="font-weight-medium mb-0 "># {order.id}</p>
+                      <p className="font-weight-medium mb-0 "># {order.OrderCode}</p>
                       <p className=" mb-0 text-small">
-                        Last Activity: <span className="text-muted"> {order.status.time}</span>
+                        Last Activity: <span className="text-muted"> {order.updated_at}</span>
                       </p>
                     </div>
                     <Badge color={"outline-" + orderStatusColor(order).color} pill className="font-weight-medium mb-2 ">

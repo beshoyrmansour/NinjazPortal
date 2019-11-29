@@ -1,4 +1,6 @@
 import { SERVICES } from "../actions";
+import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
+
 import { API_ENDPOINTS } from "../../constants/API_ENDPOINTS";
 import Axios from "axios";
 
@@ -260,25 +262,38 @@ const mockServicesTypes = [
   },
 ];
 
-export const getAllServicesTypes = () => {
+export const getAllServicesTypes = () => dispatch => {
   console.log("getAllServicesTypes");
+  // try {
+  //   const response = yield call(`${API_ENDPOINTS.ALL_SERVICE_TYPES}`);
+  //   yield put({ type: SERVICES.GET_ALL_SERVICES_TYPES, payload: [...response.data] });
+  // } finally {
+  // }
+
   Axios.get(`${API_ENDPOINTS.ALL_SERVICE_TYPES}`, {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
     },
   })
-    .then(response => console.log(response))
+    .then(response => {
+      console.log(response.data);
+      dispatch({
+        type: SERVICES.GET_ALL_SERVICES_TYPES,
+        payload: [...response.data],
+      });
+    })
     .catch(err => console.log(err));
+
   // .then(data => console.log(data));
-  return {
-    type: SERVICES.GET_ALL_SERVICES_TYPES,
-    payload: [...mockServicesTypes],
-  };
+  // return {
+  //   type: SERVICES.GET_ALL_SERVICES_TYPES,
+  //   payload: [...mockServicesTypes],
+  // };
 };
-export const setSelectedService = selectedService => {
-  return {
+export const setSelectedService = selectedService => dispatch => {
+  dispatch({
     type: SERVICES.SET_SELECTED_SERVICE,
     payload: selectedService,
-  };
+  });
 };
