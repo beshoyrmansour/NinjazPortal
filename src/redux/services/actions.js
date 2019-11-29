@@ -270,12 +270,7 @@ export const getAllServicesTypes = () => dispatch => {
   // } finally {
   // }
 
-  Axios.get(`${API_ENDPOINTS.ALL_SERVICE_TYPES}`, {
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-  })
+  Axios.get(`${API_ENDPOINTS.ALL_SERVICE_TYPES}`)
     .then(response => {
       console.log(response.data);
       dispatch({

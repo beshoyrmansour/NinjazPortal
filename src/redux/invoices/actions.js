@@ -16,26 +16,26 @@ const mockInvoicesList = [
 ];
 
 // LOAD_ALL_INVOICES, SET_SELECTED_INVOICE
-export const getAllInvoicesList = () => {
-  return {
+export const getAllInvoicesList = () => dispatch => {
+  dispatch({
     type: INVOICES.LOAD_ALL_INVOICES,
     payload: mockInvoicesList,
-  };
+  });
 };
 
-export const setSelectedInvoice = selectedInvoice => {
-  return {
+export const setSelectedInvoice = selectedInvoice => dispatch => {
+  dispatch({
     type: INVOICES.SET_SELECTED_INVOICE,
     payload: selectedInvoice,
-  };
+  });
 };
 
-export const getInvoiceDetails = selectedInvoiceId => {
+export const getInvoiceDetails = selectedInvoiceId => dispatch => {
   const selectedInvoice = mockInvoicesList.find(inv => inv.id === selectedInvoiceId);
   console.log("selectedInvoice", selectedInvoice);
 
-  return {
+  dispatch({
     type: INVOICES.SET_SELECTED_INVOICE,
     payload: selectedInvoice,
-  };
+  });
 };

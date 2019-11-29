@@ -70,13 +70,13 @@ function OrderCard(props) {
             <strong>
               <IntlMessages id="orders.OrderId" />
             </strong>
-            {props.order.id}
+            {props.order.OrderCode}
           </h3>
           <p className="mb-1 text-muted text-small w-15 w-xs-100">{props.order.serviceType}</p>
           <p className="mb-1 text-muted text-small w-15 w-xs-100">
             <strong>{props.order.total}</strong> - {props.order.paymentMethod}
           </p>
-          <p className="mb-1 text-muted text-small w-15 w-xs-100">{props.order.status.time}</p>
+          <p className="mb-1 text-muted text-small w-15 w-xs-100">{props.order.updated_at}</p>
 
           <div className="w-15 w-xs-100 text-right">
             {/* <p className="mb-1 text-muted text-small w-15 w-xs-100">{}</p> */}

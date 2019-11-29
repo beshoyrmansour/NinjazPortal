@@ -1,78 +1,6 @@
 import { ORDERS } from "../actions";
-const mockOrdersList = [
-  {
-    id: "634784689245",
-    detail: "Hello detail",
-    type: "translation",
-    status: {
-      id: "os_pending_admin_approval",
-      time: "09.08.2018 - 12:45",
-    },
-    total: "1,196.12 EGP",
-    serviceType: "Translation - Arabic - English",
-    paymentMethod: "Cash On Delivery (COD)",
-  },
-  {
-    id: "634784689246",
-    detail: "Hello detail",
-    type: "translation",
-    status: {
-      id: "os_approved_pending_on_bids",
-      time: "09.08.2018 - 12:45",
-    },
-    total: "1,196.12 EGP",
-    serviceType: "Translation - Arabic - English",
-    paymentMethod: "Cash On Delivery (COD)",
-  },
-  {
-    id: "634784689247",
-    detail: "Hello detail",
-    type: "translation",
-    status: {
-      id: "os_pending_bids_approval",
-      time: "09.08.2018 - 12:45",
-    },
-    total: "1,196.12 EGP",
-    serviceType: "Translation - Arabic - English",
-    paymentMethod: "Cash On Delivery (COD)",
-  },
-  {
-    id: "634784689248",
-    detail: "Hello detail",
-    type: "translation",
-    status: {
-      id: "os_order_in_progress",
-      time: "09.08.2018 - 12:45",
-    },
-    total: "1,196.12 EGP",
-    serviceType: "Translation - Arabic - English",
-    paymentMethod: "Cash On Delivery (COD)",
-  },
-  {
-    id: "634784689249",
-    detail: "Hello detail",
-    type: "translation",
-    status: {
-      id: "os_order_completed",
-      time: "09.08.2018 - 12:45",
-    },
-    total: "1,196.12 EGP",
-    serviceType: "Translation - Arabic - English",
-    paymentMethod: "Cash On Delivery (COD)",
-  },
-  {
-    id: "634784689244",
-    detail: "Hello detail",
-    type: "translation",
-    status: {
-      id: "os_order_cancelled",
-      time: "09.08.2018 - 12:45",
-    },
-    total: "1,196.12 EGP",
-    serviceType: "Translation - Arabic - English",
-    paymentMethod: "Cash On Delivery (COD)",
-  },
-];
+import { API_ENDPOINTS } from "../../constants/API_ENDPOINTS";
+import Axios from "axios";
 
 const mockCustomerOrdersList = [
   {
@@ -118,88 +46,60 @@ const mockCustomerOrdersList = [
       },
     ],
   },
-  {
-    id: 3,
-    fk_company: 1,
-    fk_order_status: 1,
-    OrderStatusName: "Created",
-    fk_payment_type: 1,
-    PaymentTypeName: null,
-    OrderCode: "201905193",
-    OrderDate: "2019-05-19T14:31:13.017",
-    documents_path: null,
-    is_easy: false,
-    created_at: "2019-05-19T14:31:13.017",
-    updated_at: "2019-05-19T14:31:13.017",
-    orderItems: [],
-  },
-  {
-    id: 2,
-    fk_company: 1,
-    fk_order_status: 1,
-    OrderStatusName: "Created",
-    fk_payment_type: 1,
-    PaymentTypeName: null,
-    OrderCode: "201905192",
-    OrderDate: "2019-05-19T14:22:17.62",
-    documents_path: null,
-    is_easy: false,
-    created_at: "2019-05-19T14:22:17.62",
-    updated_at: "2019-05-19T14:22:17.62",
-    orderItems: [],
-  },
-  {
-    id: 1,
-    fk_company: 1,
-    fk_order_status: 1,
-    OrderStatusName: "Created",
-    fk_payment_type: 1,
-    PaymentTypeName: null,
-    OrderCode: "201905191",
-    OrderDate: "2019-05-19T14:10:25.67",
-    documents_path: null,
-    is_easy: false,
-    created_at: "2019-05-19T14:10:25.67",
-    updated_at: "2019-05-19T14:10:25.67",
-    orderItems: [],
-  },
 ];
-export const getCustomerTopOrder = () => {
-  return {
-    type: ORDERS.LOAD_CUSTOMER_TOP_ORDERS,
-    payload: [...mockCustomerOrdersList],
-  };
+export const getCustomerTopOrder = () => dispatch => {
+  Axios.get(`${API_ENDPOINTS.CUSTOMERS_TOP_ORDERS.replace("{id}", localStorage.getItem("userId"))}`)
+    .then(response => {
+      dispatch({
+        type: ORDERS.LOAD_CUSTOMER_TOP_ORDERS,
+        payload: [...response.data],
+      });
+    })
+    .catch(err => console.log(err));
 };
 
-export const getAllOrdersList = () => {
-  return {
-    type: ORDERS.LOAD_ALL_ORDERS,
-    payload: [...mockOrdersList],
-  };
+export const getAllOrdersList = () => dispatch => {
+  Axios.get(`${API_ENDPOINTS.CUSTOMERS_ORDERS.replace("{id}", localStorage.getItem("userId"))}`)
+    .then(response => {
+      dispatch({
+        type: ORDERS.LOAD_ALL_ORDERS,
+        payload: [...response.data],
+      });
+    })
+    .catch(err => console.log(err));
 };
 
-export const setSelectedOrder = selectedOrder => {
-  return {
+export const setSelectedOrder = selectedOrder => dispatch => {
+  dispatch({
     type: ORDERS.SET_SELECTED_ORDER,
     payload: selectedOrder,
-  };
+  });
 };
 
-export const getOrderDetails = selectedOrderId => {
-  const selectedOrder = {
-    id: "634784689245",
-    detail: "Hello detail",
-    type: "translation",
-    status: {
-      id: "os_pending_bids_approval",
-      time: "09.08.2018 - 12:45",
-    },
-    total: "1,196.12 EGP",
-    serviceType: "Translation - Arabic - English",
-    paymentMethod: "Cash On Delivery (COD)",
-  };
-  return {
-    type: ORDERS.SET_SELECTED_ORDER,
-    payload: selectedOrder,
-  };
+export const getOrderDetails = selectedOrderId => dispatch => {
+  Axios.get(`${API_ENDPOINTS.ORDER_DETAILS.replace("{id}", selectedOrderId)}`)
+    .then(response => {
+      dispatch({
+        type: ORDERS.SET_SELECTED_ORDER,
+        payload: { ...response.data.results },
+      });
+    })
+    .catch(err => console.log(err));
+
+  // const selectedOrder = {
+  //   id: "634784689245",
+  //   detail: "Hello detail",
+  //   type: "translation",
+  //   status: {
+  //     id: "os_pending_bids_approval",
+  //     time: "09.08.2018 - 12:45",
+  //   },
+  //   total: "1,196.12 EGP",
+  //   serviceType: "Translation - Arabic - English",
+  //   paymentMethod: "Cash On Delivery (COD)",
+  // };
+  // dispatch({
+  //   type: ORDERS.SET_SELECTED_ORDER,
+  //   payload: selectedOrder,
+  // });
 };

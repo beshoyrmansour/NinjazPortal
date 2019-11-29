@@ -1,7 +1,7 @@
 {
-  "name": "gogo-react",
+  "name": "ninjaz-portal",
   "version": "4.2.4",
-  "description": "Gogo - React Bootstrap 4 Admin Dashboard Template",
+  "description": "NINJAZ",
   "private": true,
   "dependencies": {
     "@glidejs/glide": "^3.3.0",

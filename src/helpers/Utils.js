@@ -75,12 +75,6 @@ const orderStates = [
   { id: 7, value: "Completed" },
   { id: 8, value: "Cancelled" },
   { id: 9, value: "Rejected" },
-  // { id: "os_pending_admin_approval", value: "Pending Admin Approval" },
-  // { id: "os_approved_pending_on_bids", value: "Approved - Pending on Bids" },
-  // { id: "os_pending_bids_approval", value: "Pending Bids Approval" },
-  // { id: "os_order_in_progress", value: "Order In-Progress" },
-  // { id: "os_order_completed", value: "Order Completed" },
-  // { id: "os_order_cancelled", value: "Order cancelled" },
 ];
 
 export const invoiceStatusColor = invoice => {
@@ -113,6 +107,8 @@ export const invoiceStatusColor = invoice => {
 };
 export const orderStatusColor = order => {
   if (order) {
+    console.log('order.fk_order_status', order.fk_order_status);
+    
     switch (order.fk_order_status) {
       case orderStates[0].id:
         return { text: orderStates[0].value, color: "warning" };
@@ -133,9 +129,9 @@ export const orderStatusColor = order => {
         return { text: orderStates[5].value, color: "dark" };
 
       default:
-        return { text: "No DATA", color: "light" };
+        return { text: "No Matching status", color: "light" };
     }
   } else {
-    return { text: "No DATA", color: "light" };
+    return { text: "No Order DATA", color: "light" };
   }
 };
